@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Wise Sisters | Your Financial Sanctuary</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="quiz-overlay" class="overlay">
+        <div class="quiz-container">
+            <div class="progress-bar"><div class="progress-fill" style="width: 33%"></div></div>
+            <h2 id="question-text">When you think about your money today, how does your heart feel?</h2>
+            <div class="button-stack">
+                <button class="btn-quiz" onclick="completeQuiz('A heavy weight')">A heavy weight ☁️</button>
+                <button class="btn-quiz" onclick="completeQuiz('I’m curious but shy')">I’m curious but shy 🌿</button>
+                <button class="btn-quiz" onclick="completeQuiz('Ready to take charge')">Ready to take charge ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="app-nav">
+        <div class="logo">Money Wise Sisters</div>
+        <div class="stats-box">
+            <span id="streak-count">🔥 4 Day Streak</span>
+            <div class="seed-badge">🌱 <span id="seed-total">250</span></div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header id="daily-ritual" class="ritual-card">
+            <div class="ritual-content">
+                <h4 id="ritual-day-tag">FRIDAY RITUAL</h4>
+                <h1 id="ritual-title">The Story Circle</h1>
+                <p id="ritual-description">Join Sister Margaret as she shares how she spotted a "Grandchild" scam call.</p>
+                <button class="btn-action" onclick="joinCircle()">Pull Up a Chair</button>
+            </div>
+            <div class="ritual-icon">🕯️</div>
+        </header>
+
+        <section class="growth-section">
+            <h3>Your Financial Garden</h3>
+            <div class="garden-map">
+                <div class="flower-node bloomed"><span>1</span><p>Welcome</p></div>
+                <div class="flower-node active"><span>2</span><p>$5 Win</p></div>
+                <div class="flower-node locked"><span>3</span><p>Scam Proof</p></div>
+                <div class="flower-node locked"><span>4</span><p>The Vault</p></div>
+            </div>
+        </section>
+
+        <section class="community-feed">
+            <h3>Sister Wins</h3>
+            <div class="win-card">
+                <div class="avatar">🐘</div>
+                <div class="win-text">
+                    <strong>Sister Bev</strong> just earned the <strong>"Scam Spotter"</strong> badge!
+                    <br><small>2 minutes ago</small>
+                </div>
+                <button class="btn-heart">❤️</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
