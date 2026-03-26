@@ -5,6 +5,6 @@ console.log("Gamify Engine Loaded!");
     };
 
     window.recordSupportAction = function() {
-        // ... your code here ...
+        // ...const userStats = { xp: 0, level: 1, communityContributions: 0, badges: [] }; /** * Adds XP and checks for level-ups * @param {number} amount - XP gained from a task (e.g., passing a quiz) */ function gainXP(amount) { userStats.xp += amount; // Simple leveling logic: every 100 XP is a new level const newLevel = Math.floor(userStats.xp / 100) + 1; if(newLevel > userStats.level) { userStats.level = newLevel; console.log(`Level Up! You are now Level ${userStats.level}`); // This is where you'd trigger a popup or sound later } updateDashboard(); } /** * Logic for community support actions */ function recordSupportAction() { userStats.communityContributions++; if(userStats.communityContributions === 5) { userStats.badges.push("Community Pillar"); console.log("New Badge Earned: Community Pillar"); } updateDashboard(); } // Placeholder to update the UI later function updateDashboard() {console.log("Current Stats:", userStats); // When the HTML/CSS is ready, you'll target IDs here // Example: document.getElementById('xp-display').innerText = userStats.xp; }
     };
 })();
