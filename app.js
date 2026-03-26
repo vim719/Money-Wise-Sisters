@@ -1,69 +1,9 @@
-const ritualData = {
-    Monday: { title: "The $5 Monday", desc: "Small wins today. What's one tiny thing you skipped?", icon: "💰" },
-    Wednesday: { title: "Skill-Swap Wednesday", desc: "Learn a new term in 2 minutes.", icon: "🤝" },
-    Friday: { title: "Friday Story Circle", desc: "Sister Rosa shares her Medicare journey.", icon: "🔥" }
-};
-
-// Initialize Dashboard
-document.addEventListener('DOMContentLoaded', () => {
-    const day = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date());
-    const ritual = ritualData[day] || ritualData['Monday'];
-    
-    document.getElementById('ritual-title').innerText = ritual.title;
-    document.getElementById('ritual-desc').innerText = ritual.desc;
-    document.getElementById('ritual-icon').innerText = ritual.icon;
-});
-
-function nextStep(feeling) {
-    const quizArea = document.getElementById('onboarding');
-    // Save feeling to state for personalization
-    console.log(`User feels: ${feeling}`);
-    
-    // Transition to Dashboard
-    quizArea.style.opacity = '0';
-    setTimeout(() => {
-        quizArea.style.display = 'none';
-        triggerWelcome(feeling);
-    }, 500);
-}
-
-function triggerWelcome(feeling) {
-    let msg = feeling === 'anxious' ? "You're safe here. Let's take it slow." : "Love that energy! Let's dive in.";
-    alert(msg); // Placeholder for a beautiful custom toast
-}
-
-// Ritual Content Repository
+// 1. DATA REPOSITORY
 const weeklyRituals = {
-    Monday: { title: "Monday Momentum", tag: "THE $5 WIN", desc: "What's one tiny coffee or treat you can 'skip' to pay yourself today?", icon: "🌱" },
+    Monday: { title: "Monday Momentum", tag: "THE $5 WIN", desc: "What's one tiny treat you can 'skip' to pay yourself today?", icon: "💰" },
     Wednesday: { title: "Wisdom Wednesday", tag: "SKILL SWAP", desc: "Learn how to read a bank statement in 60 seconds.", icon: "📚" },
     Friday: { title: "The Story Circle", tag: "FRIDAY RITUAL", desc: "Join Sister Margaret: 'How I spotted a phone scam.'", icon: "🕯️" }
 };
-
-// Onboarding Logic
-function completeQuiz(feeling) {
-    console.log("Member feels:", feeling);
-    const overlay = document.getElementById('quiz-overlay');
-    overlay.style.transition = "opacity 0.5s ease";
-    overlay.style.opacity = "0";
-    setTimeout(() => overlay.style.display = "none", 500);
-}
-
-// Ritual Engine
-function initDashboard() {
-    const today = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date());
-    const ritual = weeklyRituals[today] || weeklyRituals['Monday'];
-    
-    document.getElementById('ritual-title').innerText = ritual.title;
-    document.getElementById('ritual-day-tag').innerText = ritual.tag;
-    document.getElementById('ritual-description').innerText = ritual.desc;
-    document.querySelector('.ritual-icon').innerText = ritual.icon;
-}
-
-function joinCircle() {
-    alert("Connecting you to the Sisterhood live stream... Get your tea ready! ☕");
-}
-
-window.onload = initDashboard;
 
 const scamDeck = [
     {
@@ -80,85 +20,11 @@ const scamDeck = [
     },
     {
         sender: "IRS-Tax-Refunds-Dept",
-        body: "We found an error in your 2024 filing. Please text your PIN to this number to receive your $1,200 check.",
+        body: "We found an error in your 2024 filing. Please text your PIN to this number to receive your check.",
         type: "scam",
         explanation: "Red Flag! The IRS never initiates contact by text or email to ask for a PIN."
     }
 ];
-
-let currentCardIndex = 0;
-
-function playTurn(choice) {
-    const card = scamDeck[currentCardIndex];
-    const feedback = document.getElementById('game-feedback');
-    const cardElement = document.getElementById('scam-card');
-    
-    if (choice === card.type) {
-        feedback.style.color = "#1e8e3e";
-        feedback.innerText = "⭐ Brilliant! " + card.explanation;
-        cardElement.classList.add('correct-flash');
-        updateSeeds(50); // Reward the user
-    } else {
-        feedback.style.color = "#d93025";
-        feedback.innerText = "Wait! " + card.explanation;
-        cardElement.classList.add('wrong-flash');
-    }
-
-    // Move to next card after 4 seconds
-    setTimeout(() => {
-        cardElement.classList.remove('correct-flash', 'wrong-flash');
-        currentCardIndex = (currentCardIndex + 1) % scamDeck.length;
-        renderCard();
-        feedback.innerText = "";
-    }, 4000);
-}
-
-function renderCard() {
-    const card = scamDeck[currentCardIndex];
-    document.getElementById('card-sender').innerText = `From: ${card.sender}`;
-    document.getElementById('card-body').innerText = `"${card.body}"`;
-}
-
-function updateSeeds(amount) {
-    let currentSeeds = parseInt(document.getElementById('seed-total').innerText);
-    document.getElementById('seed-total').innerText = currentSeeds + amount;
-}
-
-// Ensure the first card loads
-window.onload = () => {
-    initDashboard(); // from previous code
-    renderCard();
-};
-
-function inviteSister() {
-    const shareData = {
-        title: 'Money Wise Sisters',
-        text: "Hi! I joined this lovely group called Money Wise Sisters. It's a safe place to learn about money and protect ourselves from scams. I'd love for you to join me for the next 'Story Circle'! Here is the link:",
-        url: window.location.href, // This automatically grabs your GitHub Pages link
-    };
-
-    // Check if the browser supports the native share menu (most mobile phones do)
-    if (navigator.share) {
-        navigator.share(shareData)
-            .then(() => {
-                showToast("Invite sent! +100 Seeds 🌸");
-                updateSeeds(100);
-            })
-            .catch((err) => console.log("Error sharing:", err));
-    } else {
-        // Fallback for desktop browsers
-        alert("Copy this link to send to a friend: " + window.location.href);
-    }
-}
-
-// Add a simple toast notification function if you don't have one
-function showToast(message) {
-    const toast = document.createElement("div");
-    toast.style.cssText = "position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#4A306D; color:white; padding:15px 30px; border-radius:50px; z-index:2000; font-weight:bold;";
-    toast.innerText = message;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 3000);
-}
 
 const vibeQuestions = [
     {
@@ -185,9 +51,68 @@ const results = {
     sage: { name: "Secure Sage", icon: "🦉", desc: "You are balanced and wise. You know exactly where every dollar goes and why." }
 };
 
+// 2. STATE MANAGEMENT
+let currentCardIndex = 0;
 let currentVibeIndex = 0;
 let scores = { squirrel: 0, gardener: 0, sage: 0 };
 
+// 3. INITIALIZATION (Cleanly combined)
+document.addEventListener('DOMContentLoaded', () => {
+    initDashboard();
+    renderCard();
+});
+
+function initDashboard() {
+    const today = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date());
+    const ritual = weeklyRituals[today] || weeklyRituals['Monday'];
+    
+    document.getElementById('ritual-title').innerText = ritual.title;
+    document.getElementById('ritual-day-tag').innerText = ritual.tag;
+    document.getElementById('ritual-description').innerText = ritual.desc;
+    document.querySelector('.ritual-icon').innerText = ritual.icon;
+}
+
+// 4. ONBOARDING
+function completeQuiz(feeling) {
+    const overlay = document.getElementById('quiz-overlay');
+    overlay.style.opacity = "0";
+    overlay.style.pointerEvents = "none";
+    showToast(`Welcome, Sister! Let's grow together. ✨`);
+    setTimeout(() => overlay.style.display = "none", 500);
+}
+
+// 5. SCAM GAME LOGIC (With Neon Feedback)
+function playTurn(choice) {
+    const card = scamDeck[currentCardIndex];
+    const feedback = document.getElementById('game-feedback');
+    const cardElement = document.getElementById('scam-card');
+    
+    if (choice === card.type) {
+        feedback.style.color = "var(--neon-lime)";
+        feedback.innerText = "⭐ Brilliant! " + card.explanation;
+        cardElement.classList.add('correct-flash');
+        updateSeeds(50);
+    } else {
+        feedback.style.color = "var(--neon-pink)";
+        feedback.innerText = "Wait! " + card.explanation;
+        cardElement.classList.add('wrong-flash');
+    }
+
+    setTimeout(() => {
+        cardElement.classList.remove('correct-flash', 'wrong-flash');
+        currentCardIndex = (currentCardIndex + 1) % scamDeck.length;
+        renderCard();
+        feedback.innerText = "";
+    }, 4000);
+}
+
+function renderCard() {
+    const card = scamDeck[currentCardIndex];
+    document.getElementById('card-sender').innerText = `From: ${card.sender}`;
+    document.getElementById('card-body').innerText = `"${card.body}"`;
+}
+
+// 6. VIBE QUIZ ENGINE
 function startVibeQuiz() {
     document.getElementById('quiz-intro').classList.add('hidden');
     document.getElementById('quiz-question-container').classList.remove('hidden');
@@ -212,7 +137,6 @@ function showVibeQuestion() {
 function selectVibeOption(type) {
     scores[type]++;
     currentVibeIndex++;
-    
     if (currentVibeIndex < vibeQuestions.length) {
         showVibeQuestion();
     } else {
@@ -223,22 +147,45 @@ function selectVibeOption(type) {
 function showVibeResult() {
     document.getElementById('quiz-question-container').classList.add('hidden');
     document.getElementById('quiz-result').classList.remove('hidden');
-    
-    // Find highest score
     const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
     const res = results[winner];
     
     document.getElementById('result-icon').innerText = res.icon;
     document.getElementById('result-name').innerText = res.name;
     document.getElementById('result-desc').innerText = res.desc;
-    
-    updateSeeds(150); // Massive bonus for finishing!
+    updateSeeds(150);
 }
 
-function resetQuiz() {
-    currentVibeIndex = 0;
-    scores = { squirrel: 0, gardener: 0, sage: 0 };
-    document.getElementById('quiz-result').classList.add('hidden');
-    document.getElementById('quiz-intro').classList.remove('hidden');
+// 7. UTILITIES
+function updateSeeds(amount) {
+    const seedEl = document.getElementById('seed-total');
+    let currentSeeds = parseInt(seedEl.innerText);
+    seedEl.innerText = currentSeeds + amount;
+    seedEl.parentElement.classList.add('active-pulse');
+    setTimeout(() => seedEl.parentElement.classList.remove('active-pulse'), 1000);
+}
+
+function showToast(message) {
+    const toast = document.createElement("div");
+    toast.className = "game-card";
+    toast.style.cssText = "position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--neon-purple); border:2px solid var(--neon-cyan); color:white; padding:15px 30px; border-radius:50px; z-index:9999; font-weight:bold; box-shadow:0 0 20px rgba(0,243,255,0.4);";
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
+function inviteSister() {
+    const shareData = { title: 'Money Wise Sisters', text: "Join our safe circle! 🌸", url: window.location.href };
+    if (navigator.share) {
+        navigator.share(shareData).then(() => {
+            showToast("Invite sent! +100 Seeds 🌸");
+            updateSeeds(100);
+        });
+    } else {
+        alert("Copy this link: " + window.location.href);
+    }
 }
 
