@@ -1,116 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Fredoka:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
 :root {
-    --sky-blue: #1DA1F2;
-    --light-sky: #E1F5FE;
-    --garden-green: #2ecc71;
-    --berry-pink: #e91e63;
-    --sun-gold: #FFD700;
-    --cloud-white: #F8FDFF;
-    --text-main: #14171A;
-    --card-shadow: 0 8px 0 rgba(29, 161, 242, 0.1);
+    --yc-orange: #ff6600;
+    --bg-cream: #f6f6ef;
+    --text-gray: #555555;
+    --text-dark: #222222;
+    --border-light: #e0e0e0;
 }
 
 body {
-    background-color: #F0F7FF;
-    background-image: radial-gradient(#d1e9ff 1px, transparent 1px);
-    background-size: 20px 20px; /* Subtle grid pattern like a puzzle board */
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-gray);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     margin: 0;
-    padding: 15px;
+    padding: 20px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .logo { 
-    font-family: 'Fredoka', sans-serif; 
-    color: var(--sky-blue);
-    text-shadow: 2px 2px 0px white;
+/* Headers: Sleek, Grey, and NOT Bold */
+h1, h2, h3, h4, .logo {
+    font-weight: 500; /* Medium, not Bold */
+    color: var(--text-dark);
+    margin-bottom: 15px;
 }
 
-/* --- THE GAME GRID --- */
+.logo {
+    color: var(--yc-orange);
+    font-size: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+/* The Grid - Clean and Spaced */
 .main-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 20px;
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px; /* YC often uses thin lines/borders */
+    background-color: var(--border-light);
+    max-width: 900px;
     margin: 0 auto;
+    border: 1px solid var(--border-light);
 }
 
-/* --- THE "TOY-LIKE" CARD DESIGN --- */
+/* Section Cards - Flat and Clean */
 .game-card {
     background: white;
-    border: 3px solid #D1E8FF;
-    border-radius: 28px;
-    padding: 25px;
-    box-shadow: 0 10px 0 #D1E8FF; /* 3D effect for seniors to identify "blocks" */
-    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 24px;
+    transition: background 0.2s;
 }
 
-.game-card:active {
-    transform: translateY(4px);
-    box-shadow: 0 4px 0 #D1E8FF;
-}
-
-/* --- BIG FRIENDLY BUTTONS --- */
+/* Buttons - Sleek and Flat */
 .btn-quiz, .vibe-btn, .btn-action, .btn-invite {
-    width: 100%;
-    padding: 20px;
-    margin: 10px 0;
-    border: 3px solid var(--sky-blue);
-    border-radius: 20px;
-    background: white;
-    color: var(--sky-blue);
-    font-size: 1.2rem;
-    font-weight: 900;
+    display: inline-block;
+    padding: 10px 16px;
+    background: transparent;
+    border: 1px solid var(--text-gray);
+    color: var(--text-gray);
+    font-size: 14px;
+    font-family: inherit;
     cursor: pointer;
-    box-shadow: 0 6px 0 var(--light-sky);
-    font-family: 'Fredoka', sans-serif;
+    border-radius: 3px;
+    margin: 5px 0;
+    transition: all 0.2s;
 }
 
-.btn-action {
-    background: var(--sky-blue);
+.btn-action, .btn-invite {
+    background: var(--yc-orange);
+    border-color: var(--yc-orange);
     color: white;
-    box-shadow: 0 6px 0 #1581C4;
 }
 
-/* --- SCAM GAME (High Contrast) --- */
+.btn-action:hover {
+    background: #e55c00;
+}
+
+/* Game Elements - High Legibility */
 .scam-card {
-    background: #F8FDFF;
-    border: 4px dashed #B3D9FF;
-    border-radius: 20px;
-    padding: 20px;
+    background: #fafafa;
+    border: 1px solid var(--border-light);
+    padding: 15px;
     margin: 15px 0;
-    font-size: 1.1rem;
+    font-size: 14px;
+    color: var(--text-gray);
 }
 
-.btn-scam { background: #FFE5E5; border-color: #FF4D4D; color: #D93025; }
-.btn-safe { background: #E5FFE5; border-color: #2ECC71; color: #1E8E3E; }
-
-/* --- NAVIGATION --- */
-.app-nav {
+.nav-bar {
+    max-width: 900px;
+    margin: 0 auto 20px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    margin-bottom: 25px;
-    border: 3px solid var(--light-sky);
-}
-
-.seed-badge {
-    background: var(--sun-gold);
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: 900;
-}
-
-/* --- ANIMATIONS --- */
-.correct-flash { animation: celebrate 0.5s ease-out; }
-@keyframes celebrate {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); background-color: #e5ffe5; }
-    100% { transform: scale(1); }
 }
 
 .hidden { display: none !important; }
