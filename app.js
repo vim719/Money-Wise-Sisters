@@ -125,3 +125,85 @@ function showToast(message) {
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3000);
 }
+
+const vibeQuestions = [
+    {
+        q: "When you find an extra $20 in an old coat pocket, what do you do?",
+        options: [
+            { text: "Put it straight into the 'rainy day' jar.", type: "squirrel" },
+            { text: "Buy a treat for a grandchild or friend.", type: "gardener" },
+            { text: "Check my budget to see where it fits best.", type: "sage" }
+        ]
+    },
+    {
+        q: "How often do you check your bank balance?",
+        options: [
+            { text: "Every single morning without fail.", type: "squirrel" },
+            { text: "Only when I'm at the store or paying a bill.", type: "gardener" },
+            { text: "Once a week during my 'money hour'.", type: "sage" }
+        ]
+    }
+];
+
+const results = {
+    squirrel: { name: "Saver Squirrel", icon: "🐿️", desc: "You are the master of the 'Nest Egg.' You find security in watching your savings grow!" },
+    gardener: { name: "Giving Gardener", icon: "🌻", desc: "You see money as a tool to help others grow. You are the heart of your family!" },
+    sage: { name: "Secure Sage", icon: "🦉", desc: "You are balanced and wise. You know exactly where every dollar goes and why." }
+};
+
+let currentVibeIndex = 0;
+let scores = { squirrel: 0, gardener: 0, sage: 0 };
+
+function startVibeQuiz() {
+    document.getElementById('quiz-intro').classList.add('hidden');
+    document.getElementById('quiz-question-container').classList.remove('hidden');
+    showVibeQuestion();
+}
+
+function showVibeQuestion() {
+    const q = vibeQuestions[currentVibeIndex];
+    document.getElementById('vibe-q-text').innerText = q.q;
+    const optionsDiv = document.getElementById('vibe-options');
+    optionsDiv.innerHTML = '';
+    
+    q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'vibe-btn';
+        btn.innerText = opt.text;
+        btn.onclick = () => selectVibeOption(opt.type);
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function selectVibeOption(type) {
+    scores[type]++;
+    currentVibeIndex++;
+    
+    if (currentVibeIndex < vibeQuestions.length) {
+        showVibeQuestion();
+    } else {
+        showVibeResult();
+    }
+}
+
+function showVibeResult() {
+    document.getElementById('quiz-question-container').classList.add('hidden');
+    document.getElementById('quiz-result').classList.remove('hidden');
+    
+    // Find highest score
+    const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    const res = results[winner];
+    
+    document.getElementById('result-icon').innerText = res.icon;
+    document.getElementById('result-name').innerText = res.name;
+    document.getElementById('result-desc').innerText = res.desc;
+    
+    updateSeeds(150); // Massive bonus for finishing!
+}
+
+function resetQuiz() {
+    currentVibeIndex = 0;
+    scores = { squirrel: 0, gardener: 0, sage: 0 };
+    document.getElementById('quiz-result').classList.add('hidden');
+    document.getElementById('quiz-intro').classList.remove('hidden');
+}
