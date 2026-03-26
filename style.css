@@ -1,0 +1,95 @@
+:root {
+    --primary-sage: #5D735D;
+    --soft-lavender: #E8E1EF;
+    --deep-plum: #4A306D;
+    --gold: #D4AF37;
+    --cream: #FFFCF7;
+    --text: #2D2D2D;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .logo { font-family: 'Lora', serif; color: var(--primary-sage); }
+
+/* The Quiz Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--cream);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.quiz-container { max-width: 400px; text-align: center; }
+
+.btn-quiz {
+    width: 100%;
+    padding: 20px;
+    margin: 10px 0;
+    border: 2px solid var(--soft-lavender);
+    border-radius: 16px;
+    background: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--soft-lavender);
+}
+
+/* Ritual Card */
+.ritual-card {
+    background: linear-gradient(135deg, var(--primary-sage), #3e4d3e);
+    border-radius: 24px;
+    padding: 24px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.btn-action {
+    background: var(--gold);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: bold;
+    color: var(--deep-plum);
+    cursor: pointer;
+}
+
+/* The Garden Map */
+.garden-map {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.flower-node {
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+.flower-node.active, .flower-node.bloomed { opacity: 1; }
+
+.flower-node span {
+    width: 50px;
+    height: 50px;
+    background: #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.flower-node.active span { background: var(--gold); border: 3px solid var(--primary-sage); }
