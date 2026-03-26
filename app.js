@@ -56,7 +56,7 @@ let currentCardIndex = 0;
 let currentVibeIndex = 0;
 let scores = { squirrel: 0, gardener: 0, sage: 0 };
 
-// 3. INITIALIZATION (Cleanly combined)
+// 3. INITIALIZATION
 document.addEventListener('DOMContentLoaded', () => {
     initDashboard();
     renderCard();
@@ -81,19 +81,19 @@ function completeQuiz(feeling) {
     setTimeout(() => overlay.style.display = "none", 500);
 }
 
-// 5. SCAM GAME LOGIC (With Neon Feedback)
+// 5. SCAM GAME LOGIC (Sky Blue Theme Optimized)
 function playTurn(choice) {
     const card = scamDeck[currentCardIndex];
     const feedback = document.getElementById('game-feedback');
     const cardElement = document.getElementById('scam-card');
     
     if (choice === card.type) {
-        feedback.style.color = "#1E8E3E"; // Dark Green
+        feedback.style.color = "#1E8E3E"; // Accessible Dark Green
         feedback.innerText = "⭐ Brilliant! " + card.explanation;
         cardElement.classList.add('correct-flash');
         updateSeeds(50);
     } else {
-        feedback.style.color = "#D93025"; // Dark Red
+        feedback.style.color = "#D93025"; // Accessible Dark Red
         feedback.innerText = "Wait! " + card.explanation;
         cardElement.classList.add('wrong-flash');
     }
@@ -161,14 +161,26 @@ function updateSeeds(amount) {
     const seedEl = document.getElementById('seed-total');
     let currentSeeds = parseInt(seedEl.innerText);
     seedEl.innerText = currentSeeds + amount;
-    seedEl.parentElement.classList.add('active-pulse');
-    setTimeout(() => seedEl.parentElement.classList.remove('active-pulse'), 1000);
 }
 
 function showToast(message) {
     const toast = document.createElement("div");
-    toast.className = "game-card";
-    toast.style.cssText = "position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--neon-purple); border:2px solid var(--neon-cyan); color:white; padding:15px 30px; border-radius:50px; z-index:9999; font-weight:bold; box-shadow:0 0 20px rgba(0,243,255,0.4);";
+    // Updated styling to match Sky Blue Garden theme
+    toast.style.cssText = `
+        position: fixed; 
+        bottom: 30px; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        background: #1DA1F2; 
+        color: white; 
+        padding: 16px 32px; 
+        border-radius: 50px; 
+        z-index: 9999; 
+        font-weight: bold; 
+        box-shadow: 0 10px 25px rgba(29, 161, 242, 0.3);
+        font-family: 'Fredoka', sans-serif;
+        transition: opacity 0.5s ease;
+    `;
     toast.innerText = message;
     document.body.appendChild(toast);
     setTimeout(() => {
@@ -189,3 +201,6 @@ function inviteSister() {
     }
 }
 
+function joinCircle() {
+    showToast("Connecting you to the Sisterhood... ☕");
+}
