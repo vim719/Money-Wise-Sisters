@@ -1,0 +1,10 @@
+console.log("Gamify Engine Loaded!");
+
+    window.gainXP = function(amount) { 
+        // ... your code here ...
+    };
+
+    window.recordSupportAction = function() {
+        // ... your code here ...
+    };
+})();
