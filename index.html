@@ -50,6 +50,25 @@
             </div>
         </section>
 
+        <section id="scam-game" class="game-area">
+    <h3>🛡️ Daily Scam-Spotter</h3>
+    <p>Is this message a <strong>Safe Friend</strong> or a <strong>Sneaky Scam</strong>?</p>
+    
+    <div class="card-stack">
+        <div id="scam-card" class="scam-card">
+            <div class="card-header" id="card-sender">From: Apple-Support-Urgent@gmail.com</div>
+            <div class="card-body" id="card-body">
+                "Your account has been locked. Click here to verify your Social Security number immediately."
+            </div>
+        </div>
+    </div>
+
+    <div class="game-controls">
+        <button class="btn-scam" onclick="playTurn('scam')">🚩 Sneaky Scam</button>
+        <button class="btn-safe" onclick="playTurn('safe')">✅ Safe Friend</button>
+    </div>
+    <div id="game-feedback" class="feedback-text"></div>
+        </section>
         <section class="community-feed">
             <h3>Sister Wins</h3>
             <div class="win-card">
