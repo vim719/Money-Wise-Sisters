@@ -8,110 +8,88 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <div id="quiz-overlay" class="overlay">
-        <div class="quiz-container">
-            <div class="progress-bar"><div class="progress-fill" style="width: 33%"></div></div>
-            <h2 id="question-text">When you think about your money today, how does your heart feel?</h2>
-            <div class="button-stack">
-                <button class="btn-quiz" onclick="completeQuiz('A heavy weight')">A heavy weight ☁️</button>
-                <button class="btn-quiz" onclick="completeQuiz('I’m curious but shy')">I’m curious but shy 🌿</button>
-                <button class="btn-quiz" onclick="completeQuiz('Ready to take charge')">Ready to take charge ✨</button>
-            </div>
+    <div class="quiz-container game-card">
+        <div class="progress-bar"><div class="progress-fill" style="width: 33%"></div></div>
+        <h2 id="question-text">How does your heart feel about money?</h2>
+        <div class="button-stack">
+            <button class="btn-quiz" onclick="completeQuiz('A heavy weight')">A heavy weight ☁️</button>
+            <button class="btn-quiz" onclick="completeQuiz('I’m curious but shy')">I’m curious but shy 🌿</button>
+            <button class="btn-quiz" onclick="completeQuiz('Ready to take charge')">Ready to take charge ✨</button>
         </div>
     </div>
+</div>
 
-    <nav class="app-nav">
-        <div class="logo">Money Wise Sisters</div>
-        <div class="stats-box">
-            <span id="streak-count">🔥 4 Day Streak</span>
-            <div class="seed-badge">🌱 <span id="seed-total">250</span></div>
-        </div>
-    </nav>
+<nav class="app-nav">
+    <div class="logo">Money Wise Sisters</div>
+    <div class="stats-box">
+        <span id="streak-count" class="active-pulse">🔥 4 Day Streak</span>
+        <div class="seed-badge">🌱 <span id="seed-total">250</span></div>
+    </div>
+</nav>
 
-    <main class="content">
-        <header id="daily-ritual" class="ritual-card">
-            <div class="ritual-content">
-                <h4 id="ritual-day-tag">FRIDAY RITUAL</h4>
-                <h1 id="ritual-title">The Story Circle</h1>
-                <p id="ritual-description">Join Sister Margaret as she shares how she spotted a "Grandchild" scam call.</p>
-                <button class="btn-action" onclick="joinCircle()">Pull Up a Chair</button>
-            </div>
-            <div class="ritual-icon">🕯️</div>
-        </header>
-
-        <section class="growth-section">
-            <h3>Your Financial Garden</h3>
-            <div class="garden-map">
-                <div class="flower-node bloomed"><span>1</span><p>Welcome</p></div>
-                <div class="flower-node active"><span>2</span><p>$5 Win</p></div>
-                <div class="flower-node locked"><span>3</span><p>Scam Proof</p></div>
-                <div class="flower-node locked"><span>4</span><p>The Vault</p></div>
-            </div>
-        </section>
-
-        <section id="scam-game" class="game-area">
-    <h3>🛡️ Daily Scam-Spotter</h3>
-    <p>Is this message a <strong>Safe Friend</strong> or a <strong>Sneaky Scam</strong>?</p>
+<main class="main-container">
     
-    <div class="card-stack">
-        <div id="scam-card" class="scam-card">
-            <div class="card-header" id="card-sender">From: Apple-Support-Urgent@gmail.com</div>
+    <section id="daily-ritual" class="game-card ritual-card" style="grid-column: 1 / -1;">
+        <div class="ritual-content">
+            <h4 id="ritual-day-tag">FRIDAY RITUAL</h4>
+            <h1 id="ritual-title">The Story Circle</h1>
+            <p id="ritual-description">Join Sister Margaret as she shares how she spotted a "Grandchild" scam call.</p>
+            <button class="btn-action" onclick="joinCircle()">Pull Up a Chair</button>
+        </div>
+        <div class="ritual-icon">🕯️</div>
+    </section>
+
+    <section class="game-card growth-section">
+        <h3>Financial Garden</h3>
+        <div class="garden-map">
+            <div class="flower-node bloomed"><span>1</span><p>Start</p></div>
+            <div class="flower-node active"><span>2</span><p>$5 Win</p></div>
+            <div class="flower-node locked"><span>3</span><p>Safe</p></div>
+            <div class="flower-node locked"><span>4</span><p>Vault</p></div>
+        </div>
+    </section>
+
+    <section id="scam-game" class="game-card game-area active-pulse">
+        <h3>🛡️ Scam-Spotter</h3>
+        <div class="scam-card">
+            <div class="card-header" id="card-sender">From: Apple-Urgent@gmail.com</div>
             <div class="card-body" id="card-body">
-                "Your account has been locked. Click here to verify your Social Security number immediately."
+                "Account locked. Click to verify SSN."
             </div>
         </div>
-    </div>
+        <div class="game-controls">
+            <button class="btn-scam" onclick="playTurn('scam')">🚩 SCAM</button>
+            <button class="btn-safe" onclick="playTurn('safe')">✅ SAFE</button>
+        </div>
+        <div id="game-feedback" class="feedback-text"></div>
+    </section>
 
-    <div class="game-controls">
-        <button class="btn-scam" onclick="playTurn('scam')">🚩 Sneaky Scam</button>
-        <button class="btn-safe" onclick="playTurn('safe')">✅ Safe Friend</button>
-    </div>
-    <div id="game-feedback" class="feedback-text"></div>
-        </section>
-        <section class="community-feed">
-            <h3>Sister Wins</h3>
-            <div class="win-card">
-                <div class="avatar">🐘</div>
-                <div class="win-text">
-                    <strong>Sister Bev</strong> just earned the <strong>"Scam Spotter"</strong> badge!
-                    <br><small>2 minutes ago</small>
-                </div>
-                <button class="btn-heart">❤️</button>
-            </div>
-        </section>
+    <section id="vibe-quiz" class="game-card vibe-container">
+        <div id="quiz-intro">
+            <h3>Money Vibe ✨</h3>
+            <button class="btn-invite" onclick="startVibeQuiz()">Start 30s Quiz</button>
+        </div>
+        <div id="quiz-question-container" class="hidden">
+            <div class="progress-dots" id="dots"></div>
+            <h4 id="vibe-q-text">Question?</h4>
+            <div id="vibe-options" class="button-stack"></div>
+        </div>
+        <div id="quiz-result" class="hidden">
+            <div class="result-badge" id="result-icon">🐿️</div>
+            <h2 id="result-name">Saver Squirrel</h2>
+            <button class="btn-invite" onclick="resetQuiz()">Again</button>
+        </div>
+    </section>
 
-      <section id="vibe-quiz" class="vibe-container">
-    <div id="quiz-intro">
-        <h3>What's Your Money Vibe? ✨</h3>
-        <p>Are you a Saver Squirrel or a Secure Sage? Take the 30-second quiz!</p>
-        <button class="btn-primary" onclick="startVibeQuiz()">Start Quiz</button>
-    </div>
+    <section class="game-card referral-box">
+        <h3>Invite a Sister ☕</h3>
+        <p>Earn <strong>100 Seeds</strong> together!</p>
+        <button class="btn-invite" onclick="inviteSister()">Send Text</button>
+    </section>
 
-    <div id="quiz-question-container" class="hidden">
-        <div class="progress-dots" id="dots"></div>
-        <h4 id="vibe-q-text">Question goes here?</h4>
-        <div id="vibe-options" class="button-stack">
-            </div>
-    </div>
-
-    <div id="quiz-result" class="hidden">
-        <div class="result-badge" id="result-icon">🐿️</div>
-        <h2 id="result-name">The Saver Squirrel</h2>
-        <p id="result-desc">You love seeing your nest egg grow. You're the backbone of the community!</p>
-        <button class="btn-invite" onclick="resetQuiz()">Take Again</button>
-    </div>
-</section>  
-        <section class="referral-box">
-    <div class="referral-content">
-        <h3>Invite a Sister to Tea ☕</h3>
-        <p>Learning is better together. Send a warm invite to a friend and you both earn <strong>100 Seeds</strong>!</p>
-        <button class="btn-invite" onclick="inviteSister()">
-            <span>Send a Text Invite</span>
-        </button>
-    </div>
-</section>
-    </main>
+</main>
+    
 
     <script src="app.js"></script>
 </body>
