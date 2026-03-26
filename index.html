@@ -80,7 +80,29 @@
                 <button class="btn-heart">❤️</button>
             </div>
         </section>
-<section class="referral-box">
+
+      <section id="vibe-quiz" class="vibe-container">
+    <div id="quiz-intro">
+        <h3>What's Your Money Vibe? ✨</h3>
+        <p>Are you a Saver Squirrel or a Secure Sage? Take the 30-second quiz!</p>
+        <button class="btn-primary" onclick="startVibeQuiz()">Start Quiz</button>
+    </div>
+
+    <div id="quiz-question-container" class="hidden">
+        <div class="progress-dots" id="dots"></div>
+        <h4 id="vibe-q-text">Question goes here?</h4>
+        <div id="vibe-options" class="button-stack">
+            </div>
+    </div>
+
+    <div id="quiz-result" class="hidden">
+        <div class="result-badge" id="result-icon">🐿️</div>
+        <h2 id="result-name">The Saver Squirrel</h2>
+        <p id="result-desc">You love seeing your nest egg grow. You're the backbone of the community!</p>
+        <button class="btn-invite" onclick="resetQuiz()">Take Again</button>
+    </div>
+</section>  
+        <section class="referral-box">
     <div class="referral-content">
         <h3>Invite a Sister to Tea ☕</h3>
         <p>Learning is better together. Send a warm invite to a friend and you both earn <strong>100 Seeds</strong>!</p>
