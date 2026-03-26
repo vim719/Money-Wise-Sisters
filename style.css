@@ -93,3 +93,50 @@ h1, h2, h3, .logo { font-family: 'Lora', serif; color: var(--primary-sage); }
 }
 
 .flower-node.active span { background: var(--gold); border: 3px solid var(--primary-sage); }
+.game-area {
+    background: #fff;
+    border: 3px solid var(--soft-lavender);
+    border-radius: 24px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+.scam-card {
+    background: #fdfdfd;
+    border: 2px solid #eee;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 300px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.card-header {
+    font-size: 0.8rem;
+    color: #666;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    word-break: break-all;
+}
+
+.game-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-scam { background: #ffeded; border: 2px solid #ffbcbc; color: #d93025; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+.btn-safe { background: #f0f9f0; border: 2px solid #b7e1b7; color: #1e8e3e; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+
+.feedback-text {
+    margin-top: 15px;
+    font-weight: 600;
+    min-height: 24px;
+}
+
+.correct-flash { border-color: #1e8e3e !important; transform: scale(1.05); }
+.wrong-flash { border-color: #d93025 !important; transform: shake 0.3s; }
