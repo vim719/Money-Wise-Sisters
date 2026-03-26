@@ -88,16 +88,16 @@ function playTurn(choice) {
     const cardElement = document.getElementById('scam-card');
     
     if (choice === card.type) {
-        feedback.style.color = "var(--neon-lime)";
+        feedback.style.color = "#1E8E3E"; // Dark Green
         feedback.innerText = "⭐ Brilliant! " + card.explanation;
         cardElement.classList.add('correct-flash');
         updateSeeds(50);
     } else {
-        feedback.style.color = "var(--neon-pink)";
+        feedback.style.color = "#D93025"; // Dark Red
         feedback.innerText = "Wait! " + card.explanation;
         cardElement.classList.add('wrong-flash');
     }
-
+    
     setTimeout(() => {
         cardElement.classList.remove('correct-flash', 'wrong-flash');
         currentCardIndex = (currentCardIndex + 1) % scamDeck.length;
