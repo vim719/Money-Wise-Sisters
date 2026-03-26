@@ -95,3 +95,33 @@ window.onload = () => {
     initDashboard(); // from previous code
     renderCard();
 };
+
+function inviteSister() {
+    const shareData = {
+        title: 'Money Wise Sisters',
+        text: "Hi! I joined this lovely group called Money Wise Sisters. It's a safe place to learn about money and protect ourselves from scams. I'd love for you to join me for the next 'Story Circle'! Here is the link:",
+        url: window.location.href, // This automatically grabs your GitHub Pages link
+    };
+
+    // Check if the browser supports the native share menu (most mobile phones do)
+    if (navigator.share) {
+        navigator.share(shareData)
+            .then(() => {
+                showToast("Invite sent! +100 Seeds 🌸");
+                updateSeeds(100);
+            })
+            .catch((err) => console.log("Error sharing:", err));
+    } else {
+        // Fallback for desktop browsers
+        alert("Copy this link to send to a friend: " + window.location.href);
+    }
+}
+
+// Add a simple toast notification function if you don't have one
+function showToast(message) {
+    const toast = document.createElement("div");
+    toast.style.cssText = "position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#4A306D; color:white; padding:15px 30px; border-radius:50px; z-index:2000; font-weight:bold;";
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
