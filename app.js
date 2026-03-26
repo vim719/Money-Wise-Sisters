@@ -30,3 +30,68 @@ function joinCircle() {
 }
 
 window.onload = initDashboard;
+
+const scamDeck = [
+    {
+        sender: "Service@PayPal-Security.net",
+        body: "Urgent: Your payment of $499.00 to 'CryptoExchange' is pending. Click here to cancel.",
+        type: "scam",
+        explanation: "Red Flag! PayPal won't use a '.net' address or ask you to click a link for crypto."
+    },
+    {
+        sender: "Sister Mary",
+        body: "Hey! Are we still on for tea at 3 PM? I'll bring the lemon squares.",
+        type: "safe",
+        explanation: "This is safe! It's personal and mentions a specific detail only a friend would know."
+    },
+    {
+        sender: "IRS-Tax-Refunds-Dept",
+        body: "We found an error in your 2024 filing. Please text your PIN to this number to receive your $1,200 check.",
+        type: "scam",
+        explanation: "Red Flag! The IRS never initiates contact by text or email to ask for a PIN."
+    }
+];
+
+let currentCardIndex = 0;
+
+function playTurn(choice) {
+    const card = scamDeck[currentCardIndex];
+    const feedback = document.getElementById('game-feedback');
+    const cardElement = document.getElementById('scam-card');
+    
+    if (choice === card.type) {
+        feedback.style.color = "#1e8e3e";
+        feedback.innerText = "⭐ Brilliant! " + card.explanation;
+        cardElement.classList.add('correct-flash');
+        updateSeeds(50); // Reward the user
+    } else {
+        feedback.style.color = "#d93025";
+        feedback.innerText = "Wait! " + card.explanation;
+        cardElement.classList.add('wrong-flash');
+    }
+
+    // Move to next card after 4 seconds
+    setTimeout(() => {
+        cardElement.classList.remove('correct-flash', 'wrong-flash');
+        currentCardIndex = (currentCardIndex + 1) % scamDeck.length;
+        renderCard();
+        feedback.innerText = "";
+    }, 4000);
+}
+
+function renderCard() {
+    const card = scamDeck[currentCardIndex];
+    document.getElementById('card-sender').innerText = `From: ${card.sender}`;
+    document.getElementById('card-body').innerText = `"${card.body}"`;
+}
+
+function updateSeeds(amount) {
+    let currentSeeds = parseInt(document.getElementById('seed-total').innerText);
+    document.getElementById('seed-total').innerText = currentSeeds + amount;
+}
+
+// Ensure the first card loads
+window.onload = () => {
+    initDashboard(); // from previous code
+    renderCard();
+};
