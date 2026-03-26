@@ -87,23 +87,40 @@ function playTurn(choice) {
     const feedback = document.getElementById('game-feedback');
     const cardElement = document.getElementById('scam-card');
     
+    // YC Style uses minimal colors
     if (choice === card.type) {
-        feedback.style.color = "#1E8E3E"; // Accessible Dark Green
-        feedback.innerText = "⭐ Brilliant! " + card.explanation;
-        cardElement.classList.add('correct-flash');
+        feedback.style.color = "var(--yc-orange)"; 
+        feedback.innerText = "Correct. " + card.explanation;
         updateSeeds(50);
     } else {
-        feedback.style.color = "#D93025"; // Accessible Dark Red
-        feedback.innerText = "Wait! " + card.explanation;
-        cardElement.classList.add('wrong-flash');
+        feedback.style.color = "#888888"; // Subtle gray for errors
+        feedback.innerText = "Incorrect. " + card.explanation;
     }
     
     setTimeout(() => {
-        cardElement.classList.remove('correct-flash', 'wrong-flash');
         currentCardIndex = (currentCardIndex + 1) % scamDeck.length;
         renderCard();
         feedback.innerText = "";
     }, 4000);
+}
+
+function showToast(message) {
+    const toast = document.createElement("div");
+    toast.style.cssText = `
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        right: 0;
+        background: var(--yc-orange); 
+        color: white; 
+        padding: 10px; 
+        text-align: center;
+        font-size: 14px;
+        z-index: 9999;
+    `;
+    toast.innerText = message;
+    document.body.prepend(toast);
+    setTimeout(() => toast.remove(), 3000);
 }
 
 function renderCard() {
