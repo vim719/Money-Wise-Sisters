@@ -140,3 +140,35 @@ h1, h2, h3, .logo { font-family: 'Lora', serif; color: var(--primary-sage); }
 
 .correct-flash { border-color: #1e8e3e !important; transform: scale(1.05); }
 .wrong-flash { border-color: #d93025 !important; transform: shake 0.3s; }
+
+.referral-box {
+    background: var(--soft-lavender);
+    border-radius: 24px;
+    padding: 30px;
+    margin: 40px 20px;
+    text-align: center;
+    border: 2px dashed var(--deep-plum);
+}
+
+.btn-invite {
+    background: var(--deep-plum);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(74, 48, 109, 0.3);
+    transition: transform 0.2s;
+    width: 100%;
+}
+
+.btn-invite:active {
+    transform: scale(0.95);
+}
+
+.referral-box h3 {
+    color: var(--deep-plum);
+    margin-top: 0;
+}
